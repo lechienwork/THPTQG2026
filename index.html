@@ -1,0 +1,589 @@
+  <!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tin học THPT 2025 - Chủ đề & cách chấm điểm</title>
+  <style>
+    * { box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: 'Times New Roman', Times, serif, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #eef5ff 0%, #f8fbff 100%);
+      color:#1f2937;
+    }
+    .wrap{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    .hero{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:24px;
+      padding:28px;
+      box-shadow:0 12px 36px rgba(15,23,42,.08);
+      margin-bottom:20px;
+    }
+    .hero h1{
+      margin:0 0 10px;
+      font-size:34px;
+      line-height:1.2;
+      color:#0f172a;
+    }
+    .hero p{
+      margin:0;
+      font-size:17px;
+      line-height:1.8;
+      color:#475569;
+    }
+    .pill-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+    .pill{
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:700;
+      background:#dbeafe;
+      color:#1d4ed8;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:24px;
+      box-shadow:0 10px 30px rgba(15,23,42,.07);
+      overflow:hidden;
+      margin-bottom:18px;
+    }
+    .card-head{
+      padding:18px 24px;
+      color:#fff;
+      background: linear-gradient(90deg, #2563eb, #60a5fa);
+    }
+    .card-head.orange{
+      background: linear-gradient(90deg, #d97706, #f59e0b);
+    }
+    .card-head.green{
+      background: linear-gradient(90deg, #059669, #34d399);
+    }
+    .card-head h2{
+      margin:0 0 6px;
+      font-size:28px;
+      line-height:1.2;
+    }
+    .card-head p{
+      margin:0;
+      font-size:16px;
+      line-height:1.7;
+      opacity:.98;
+    }
+    .card-body{
+      padding:22px 24px 24px;
+    }
+
+    .score-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-bottom:14px;
+    }
+    .score-box{
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-radius:18px;
+      padding:16px;
+    }
+    .label{
+      font-size:13px;
+      font-weight:700;
+      color:#64748b;
+      text-transform:uppercase;
+      letter-spacing:.4px;
+      margin-bottom:6px;
+    }
+    .value{
+      font-size:24px;
+      font-weight:800;
+      color:#0f172a;
+      line-height:1.3;
+    }
+    .small-note{
+      margin-top:14px;
+      background:#f8fafc;
+      border-left:5px solid #cbd5e1;
+      padding:14px 16px;
+      border-radius:14px;
+      font-size:16px;
+      line-height:1.8;
+      color:#475569;
+    }
+    .highlight-box{
+      margin-top:16px;
+      background:linear-gradient(180deg,#fff7ed 0%,#ffffff 100%);
+      border:1px solid #fed7aa;
+      border-radius:20px;
+      padding:18px;
+    }
+    .highlight-box h3{
+      margin:0 0 12px;
+      font-size:24px;
+      color:#9a3412;
+    }
+    .truth-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:10px;
+    }
+    .truth-item{
+      background:#fff;
+      border:1px solid #fdba74;
+      border-radius:16px;
+      padding:16px;
+      text-align:center;
+    }
+    .truth-item .big{
+      font-size:28px;
+      font-weight:800;
+      color:#c2410c;
+      margin-bottom:6px;
+    }
+    .truth-item .sub{
+      font-size:15px;
+      color:#7c2d12;
+      line-height:1.6;
+      font-weight:700;
+    }
+    .example{
+      margin-top:14px;
+      background:#fff;
+      border:1px dashed #fb923c;
+      border-radius:16px;
+      padding:16px 18px;
+      color:#7c2d12;
+      font-size:15px;
+      line-height:1.8;
+    }
+
+    .hover-layout{
+      display:grid;
+      grid-template-columns: 430px 1fr;
+      gap:18px;
+      align-items:start;
+    }
+    .topic-list{
+      display:grid;
+      gap:12px;
+    }
+    .topic-item{
+      background:#f8fbff;
+      border:1px solid #dbeafe;
+      border-radius:18px;
+      padding:16px 18px;
+      cursor:pointer;
+      transition:.2s ease;
+      outline:none;
+    }
+    .topic-item:hover,
+    .topic-item:focus{
+      transform: translateY(-2px);
+      border-color:#60a5fa;
+      box-shadow:0 8px 20px rgba(37,99,235,.10);
+      background:#eef6ff;
+    }
+    .topic-num{
+      font-size:13px;
+      font-weight:700;
+      color:#2563eb;
+      text-transform:uppercase;
+      letter-spacing:.4px;
+      margin-bottom:6px;
+    }
+    .topic-title{
+      font-size:18px;
+      font-weight:800;
+      color:#0f172a;
+      line-height:1.45;
+    }
+    .topic-sub{
+      margin-top:4px;
+      font-size:14px;
+      color:#64748b;
+      line-height:1.6;
+    }
+
+    .detail-panel{
+      background:linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      border:1px solid #dbeafe;
+      border-radius:20px;
+      padding:22px;
+      min-height: 520px;
+      position:sticky;
+      top:12px;
+    }
+    .detail-badge{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:#dbeafe;
+      color:#1d4ed8;
+      font-weight:700;
+      font-size:13px;
+      margin-bottom:10px;
+    }
+    .detail-panel h3{
+      margin:0 0 10px;
+      font-size:28px;
+      line-height:1.25;
+      color:#0f172a;
+    }
+    .detail-panel p{
+      margin:0 0 14px;
+      font-size:16px;
+      line-height:1.8;
+      color:#475569;
+    }
+    .detail-group{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:16px;
+      padding:14px 16px;
+      margin-top:10px;
+    }
+    .detail-group strong{
+      display:block;
+      margin-bottom:6px;
+      color:#0f172a;
+      font-size:16px;
+    }
+    .detail-group ul{
+      margin:0;
+      padding-left:20px;
+    }
+    .detail-group li{
+      line-height:1.75;
+      color:#475569;
+      margin-bottom:2px;
+      font-size:15px;
+    }
+
+    .split-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    .mini-card{
+      background:#f8fafc;
+      border:1px solid #e2e8f0;
+      border-radius:18px;
+      padding:18px;
+    }
+    .mini-card h3{
+      margin:0 0 10px;
+      font-size:22px;
+      color:#0f172a;
+    }
+    .mini-card ul{
+      margin:0;
+      padding-left:20px;
+    }
+    .mini-card li{
+      font-size:15px;
+      line-height:1.8;
+      color:#475569;
+      margin-bottom:4px;
+    }
+    .footer-note{
+      margin-top:14px;
+      background:#eff6ff;
+      border:1px solid #bfdbfe;
+      color:#1e3a8a;
+      border-radius:18px;
+      padding:16px 18px;
+      font-size:15px;
+      line-height:1.8;
+    }
+
+    @media (max-width: 980px){
+      .hover-layout{ grid-template-columns:1fr; }
+      .detail-panel{ position:relative; min-height:auto; top:auto; }
+      .score-grid,.split-2,.truth-grid{ grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width: 640px){
+      .wrap{ padding:14px; }
+      .hero h1{ font-size:28px; }
+      .card-head h2{ font-size:24px; }
+      .score-grid,.split-2,.truth-grid{ grid-template-columns:1fr; }
+      .detail-panel h3{ font-size:24px; }
+      .value{ font-size:22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>Môn Tin học THPT từ năm 2025<br>Cấu trúc chấm điểm + Chủ đề ôn tập</h1>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>1) Cách chấm điểm môn Tin học từ năm 2025</h2>
+      </div>
+      <div class="card-body">
+        <div class="score-grid">
+          <div class="score-box">
+            <div class="label">Câu 1 → 24</div>
+            <div class="value">Trắc nghiệm 1 đáp án đúng</div>
+          </div>
+          <div class="score-box">
+            <div class="label">Điểm mỗi câu</div>
+            <div class="value">0,25 điểm</div>
+          </div>
+          <div class="score-box">
+            <div class="label">Câu 25 → 30</div>
+            <div class="value">Đúng / Sai</div>
+          </div>
+          <div class="score-box">
+            <div class="label">Chỉ làm</div>
+            <div class="value">2 câu chung + 2 câu định hướng</div>
+          </div>
+        </div>
+
+        <div class="small-note">
+          <strong>Phần 1:</strong> 24 câu đầu, mỗi câu đúng được 0,25 điểm → tối đa <strong>6,0 điểm</strong>.<br>
+          <strong>Phần 2:</strong> có 6 câu đúng/sai từ câu 25 đến câu 30, nhưng thí sinh chỉ làm <strong>4 câu</strong> thuộc định hướng mình đăng ký → tối đa <strong>4,0 điểm</strong>.<br>
+          <strong>Toàn bài:</strong> <strong>10 điểm</strong>.
+        </div>
+
+        <div class="highlight-box">
+          <h3>Phần đúng / sai được chấm thế nào để ra 1 điểm?</h3>
+          <div style="font-size:16px; line-height:1.8; color:#7c2d12;">
+            Mỗi câu đúng/sai có <strong>4 ý nhỏ</strong>. Điểm của <strong>1 câu</strong> không chia đều 0,25 cho từng ý, mà tính theo <strong>tổng số ý làm đúng trong chính câu đó</strong>.
+          </div>
+
+          <div class="truth-grid">
+            <div class="truth-item">
+              <div class="big">1 ý đúng</div>
+              <div class="sub">được 0,1 điểm</div>
+            </div>
+            <div class="truth-item">
+              <div class="big">2 ý đúng</div>
+              <div class="sub">được 0,25 điểm</div>
+            </div>
+            <div class="truth-item">
+              <div class="big">3 ý đúng</div>
+              <div class="sub">được 0,5 điểm</div>
+            </div>
+            <div class="truth-item">
+              <div class="big">4 ý đúng</div>
+              <div class="sub">được trọn 1,0 điểm</div>
+            </div>
+          </div>
+
+
+            <div class="example">
+  <strong>Ví dụ:</strong> Câu 1: Tòa nhà của một công ty có một số phòng làm việc. Mỗi phòng có không quá 10 máy tính, được kết nối với nhau thông qua Switch tạo thành một mạng LAN. Công ty cần kết nối các mạng LAN này với nhau để tạo thành một mạng cục bộ duy nhất. Sau khi thảo luận, một số nhân viên của công ty đưa ra các nhận định sau:<br>
+  a) Mạng cục bộ của công ty là mạng WAN. <br>
+  b) Có thể sử dụng Switch loại 16 cổng để kết nối các máy tính trong mỗi phòng làm việc. <br>
+  c) Để máy tính trong các phòng làm việc truy cập được Internet thì chỉ cần lắp đặt thêm một Modem mà không cần phải đăng ký với nhà cung cấp dịch vụ Internet. <br>
+  d) Để các nhân viên có thể sử dụng điện thoại thông minh kết nối vào mạng cục bộ của công ty qua Wi-Fi, có thể lắp đặt cho mỗi phòng một Access Point và kết nối thiết bị này với Switch ở phòng đó. <br><br>
+  Vậy muốn một câu đúng/sai đạt <strong>1 điểm</strong> thì phải làm đúng của câu đó.<br>
+  - Nếu em chỉ đúng 1 ý → câu 25 được <strong>0,1 điểm</strong><br>
+            - Nếu đúng 2 ý → câu 25 được <strong>0,25 điểm</strong><br>
+            - Nếu đúng 3 ý → câu 25 được <strong>0,5 điểm</strong><br>
+            - Nếu đúng cả 4 ý → câu 25 được <strong>1,0 điểm</strong><br><br>
+</div>
+            
+
+
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-head orange">
+        <h2>2) Phần chung: 6 chủ đề trọng tâm</h2>
+        <p>Hover vào từng chủ đề để xem comment/phân tích bên cạnh.</p>
+      </div>
+      <div class="card-body">
+        <div class="hover-layout">
+          <div class="topic-list">
+            <div class="topic-item" tabindex="0"
+                 data-badge="Chủ đề 1"
+                 data-title="Giới thiệu trí tuệ nhân tạo"
+                 data-overview="Chủ đề này giúp học sinh hiểu AI là gì, AI hoạt động dựa trên dữ liệu như thế nào, và AI đang được ứng dụng ra sao trong đời sống học tập, sản xuất, y tế, giao thông hoặc truyền thông."
+                 data-focus="Khái niệm AI; phân biệt AI - học máy - học sâu ở mức cơ bản; dữ liệu đầu vào; ví dụ ứng dụng AI; lợi ích và giới hạn của AI"
+                 data-question="Nhận biết ví dụ về AI; chọn tình huống có dùng AI; hiểu vai trò của dữ liệu; nhận diện ưu điểm và hạn chế của hệ thống AI">
+              <div class="topic-num">Chủ đề 1</div>
+              <div class="topic-title">Giới thiệu trí tuệ nhân tạo</div>
+              <div class="topic-sub">Khái niệm cơ bản, ứng dụng, vai trò của dữ liệu</div>
+            </div>
+
+            <div class="topic-item" tabindex="0"
+                 data-badge="Chủ đề 2"
+                 data-title="Kết nối mạng"
+                 data-overview="Nội dung thường xoay quanh mạng máy tính, Internet, các thiết bị mạng cơ bản, cách dữ liệu được trao đổi giữa các thiết bị và một số khái niệm như địa chỉ IP, giao thức, chia sẻ tài nguyên."
+                 data-focus="Mạng LAN/WAN/Internet; thiết bị như modem, router, switch, access point; địa chỉ IP; dịch vụ mạng; lợi ích và rủi ro khi kết nối mạng"
+                 data-question="Xác định chức năng thiết bị mạng; phân biệt loại mạng; nhận biết ví dụ dịch vụ mạng; câu hỏi về truyền dữ liệu hoặc kết nối Internet">
+              <div class="topic-num">Chủ đề 2</div>
+              <div class="topic-title">Kết nối mạng</div>
+              <div class="topic-sub">Mạng máy tính, Internet, thiết bị và dịch vụ mạng</div>
+            </div>
+
+            <div class="topic-item" tabindex="0"
+                 data-badge="Chủ đề 3"
+                 data-title="Giữ gìn tính nhân văn trong không gian mạng"
+                 data-overview="Đây là chủ đề về hành vi ứng xử có trách nhiệm trên môi trường số: tôn trọng người khác, bảo vệ dữ liệu cá nhân, sử dụng thông tin đúng mục đích, không phát tán nội dung xấu hoặc vi phạm pháp luật."
+                 data-focus="Văn hóa số; đạo đức khi sử dụng Internet; quyền riêng tư; bảo vệ thông tin cá nhân; phòng chống bắt nạt mạng; kiểm chứng thông tin"
+                 data-question="Chọn hành vi đúng/sai khi dùng mạng; nhận diện tình huống vi phạm đạo đức số; cách xử lý khi gặp tin giả, lừa đảo hoặc xâm phạm dữ liệu cá nhân">
+              <div class="topic-num">Chủ đề 3</div>
+              <div class="topic-title">Giữ gìn tính nhân văn trong không gian mạng</div>
+              <div class="topic-sub">An toàn, đạo đức số, quyền riêng tư, ứng xử văn minh</div>
+            </div>
+
+            <div class="topic-item" tabindex="0"
+                 data-badge="Chủ đề 4"
+                 data-title="Tạo trang web"
+                 data-overview="Chủ đề này thường hỏi về cấu trúc cơ bản của một trang web, vai trò của HTML, CSS, liên kết, hình ảnh, bố cục trang và cách tổ chức nội dung sao cho dễ đọc, trực quan."
+                 data-focus="Khái niệm website/webpage; HTML dùng để tạo cấu trúc; CSS dùng để định dạng; thẻ cơ bản; liên kết, ảnh, danh sách, bảng; bố cục và điều hướng"
+                 data-question="Nhận diện mã HTML/CSS cơ bản; chọn chức năng của thẻ; phân biệt HTML và CSS; xác định cách chèn liên kết, ảnh hoặc định dạng nội dung">
+              <div class="topic-num">Chủ đề 4</div>
+              <div class="topic-title">Tạo trang web</div>
+              <div class="topic-sub">HTML, CSS, cấu trúc trang, nội dung và định dạng</div>
+            </div>
+
+            <div class="topic-item" tabindex="0"
+                 data-badge="Chủ đề 5"
+                 data-title="Hướng nghiệp với Tin học"
+                 data-overview="Phần này giúp học sinh hình dung các nhóm nghề liên quan đến Tin học, phẩm chất – năng lực cần có, cũng như mối liên hệ giữa học Tin học ở phổ thông với các ngành nghề trong tương lai."
+                 data-focus="Các nghề CNTT; lập trình, dữ liệu, an ninh mạng, thiết kế web, quản trị hệ thống; kỹ năng nghề nghiệp; định hướng học tập theo sở thích và năng lực"
+                 data-question="Nhận biết công việc của từng nghề; ghép nghề với mô tả phù hợp; xác định năng lực cần thiết; câu hỏi định hướng nghề nghiệp liên quan Tin học">
+              <div class="topic-num">Chủ đề 5</div>
+              <div class="topic-title">Hướng nghiệp với Tin học</div>
+              <div class="topic-sub">Nghề CNTT, năng lực, kỹ năng và định hướng học tập</div>
+            </div>
+
+            <div class="topic-item" tabindex="0"
+                 data-badge="Chủ đề 6"
+                 data-title="Giới thiệu hệ cơ sở dữ liệu"
+                 data-overview="Chủ đề này tập trung vào ý tưởng lưu trữ dữ liệu có tổ chức: bảng, bản ghi, trường dữ liệu, khóa, truy vấn và lợi ích của cơ sở dữ liệu trong quản lý thông tin."
+                 data-focus="Dữ liệu và thông tin; bảng, trường, bản ghi; hệ quản trị cơ sở dữ liệu; khóa chính; truy vấn, cập nhật, tìm kiếm; ứng dụng của CSDL"
+                 data-question="Xác định thành phần của bảng dữ liệu; phân biệt bản ghi với trường; vai trò của khóa chính; nhận biết thao tác cơ bản như thêm, sửa, xóa, tìm kiếm dữ liệu">
+              <div class="topic-num">Chủ đề 6</div>
+              <div class="topic-title">Giới thiệu hệ cơ sở dữ liệu</div>
+              <div class="topic-sub">Bảng dữ liệu, trường, bản ghi, khóa, truy vấn</div>
+            </div>
+          </div>
+
+          <div class="detail-panel" id="detailPanel">
+            <div class="detail-badge" id="detailBadge">Chủ đề 1</div>
+            <h3 id="detailTitle">Giới thiệu trí tuệ nhân tạo</h3>
+            <p id="detailOverview">Chủ đề này giúp học sinh hiểu AI là gì, AI hoạt động dựa trên dữ liệu như thế nào, và AI đang được ứng dụng ra sao trong đời sống học tập, sản xuất, y tế, giao thông hoặc truyền thông.</p>
+
+            <div class="detail-group">
+              <strong>Trọng tâm cần nắm</strong>
+              <ul id="detailFocus">
+                <li>Khái niệm AI.</li>
+                <li>Phân biệt AI, học máy, học sâu ở mức cơ bản.</li>
+                <li>Ví dụ ứng dụng AI trong thực tế.</li>
+                <li>Vai trò của dữ liệu trong AI.</li>
+              </ul>
+            </div>
+
+            <div class="detail-group">
+              <strong>Dạng câu hỏi thường gặp</strong>
+              <ul id="detailQuestion">
+                <li>Nhận biết ví dụ về AI.</li>
+                <li>Chọn tình huống có dùng AI.</li>
+                <li>Hiểu vai trò của dữ liệu.</li>
+                <li>Nhận diện ưu điểm và hạn chế của hệ thống AI.</li>
+              </ul>
+            </div>
+
+            <div class="detail-group">
+              <strong>Gợi ý ôn nhanh</strong>
+              <ul id="detailTips">
+                <li>Học theo từ khóa ngắn gọn.</li>
+                <li>Gắn mỗi khái niệm với 1 ví dụ thực tế.</li>
+                <li>Ưu tiên hiểu bản chất hơn học thuộc câu chữ.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-head green">
+        <h2>3) Phần riêng theo định hướng</h2>
+        <p>Học sinh chỉ làm 4 câu đúng/sai phù hợp với định hướng đã đăng ký.</p>
+      </div>
+      <div class="card-body">
+        <div class="split-2">
+          <div class="mini-card">
+            <h3>Phần riêng Khoa học máy tính</h3>
+            <ul>
+              <li><strong>Chủ đề 7:</strong> Giới thiệu học máy và khoa học dữ liệu</li>
+              <li><strong>Chủ đề 8:</strong> Kĩ thuật lập trình</li>
+              <li>Thường thiên về tư duy thuật toán, dữ liệu, mô hình học máy ở mức nhập môn.</li>
+              <li>Phù hợp với học sinh yêu thích lập trình và định hướng ngành khoa học máy tính.</li>
+            </ul>
+          </div>
+          <div class="mini-card">
+            <h3>Phần riêng Tin học ứng dụng</h3>
+            <ul>
+              <li><strong>Chủ đề 9:</strong> Thực hành sử dụng phần mềm tạo trang web</li>
+              <li><strong>Chủ đề 10:</strong> Thực hành tạo và khai thác cơ sở dữ liệu</li>
+              <li>Thiên về thao tác, ứng dụng, sử dụng công cụ số và xử lý bài toán thực tế.</li>
+              <li>Phù hợp với học sinh học theo định hướng Tin học ứng dụng.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-note">
+          <strong>Mẹo nhìn nhanh:</strong> 6 chủ đề đầu là phần chung. Sau đó học sinh đi theo <strong>một trong hai nhánh</strong>: <strong>Khoa học máy tính</strong> hoặc <strong>Tin học ứng dụng</strong>. Vì vậy khi ôn, nên chắc 6 chủ đề chung trước, rồi tập trung sâu vào phần riêng mình đã chọn.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const items = document.querySelectorAll('.topic-item');
+    const detailBadge = document.getElementById('detailBadge');
+    const detailTitle = document.getElementById('detailTitle');
+    const detailOverview = document.getElementById('detailOverview');
+    const detailFocus = document.getElementById('detailFocus');
+    const detailQuestion = document.getElementById('detailQuestion');
+    const detailTips = document.getElementById('detailTips');
+
+    function toList(htmlTarget, text){
+      const parts = text.split(';').map(s => s.trim()).filter(Boolean);
+      htmlTarget.innerHTML = parts.map(item => `<li>${item}.</li>`).join('');
+    }
+
+    function updateDetail(el){
+      detailBadge.textContent = el.dataset.badge || '';
+      detailTitle.textContent = el.dataset.title || '';
+      detailOverview.textContent = el.dataset.overview || '';
+      toList(detailFocus, el.dataset.focus || '');
+      toList(detailQuestion, el.dataset.question || '');
+      detailTips.innerHTML = `
+        <li>Đọc tên chủ đề rồi liên hệ tới ví dụ thực tế.</li>
+        <li>Tự đặt 2–3 câu hỏi nhận biết cho chủ đề này.</li>
+        <li>Ôn theo từ khóa chính để nhớ lâu hơn.</li>
+      `;
+    }
+
+    items.forEach(item => {
+      item.addEventListener('mouseenter', () => updateDetail(item));
+      item.addEventListener('focus', () => updateDetail(item));
+      item.addEventListener('click', () => updateDetail(item));
+    });
+  </script>
+</body>
+</html>
